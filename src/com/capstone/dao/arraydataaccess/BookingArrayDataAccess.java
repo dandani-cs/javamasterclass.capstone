@@ -5,8 +5,6 @@ import com.capstone.models.Booking;
 import com.capstone.service.CarService;
 import com.capstone.service.UserService;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.UUID;
 
 public class BookingArrayDataAccess implements BookingDao {
@@ -18,14 +16,10 @@ public class BookingArrayDataAccess implements BookingDao {
         bookings = new Booking[] {
                 new Booking(UUID.fromString("be00d8b6-f93a-4ad3-a976-38ecd75e6fc7"),
                         userService.getUser("a6a0b0dd-08cb-41b8-9108-682180bab0b9"),
-                        carService.getCar("ABC1234"),
-                        new Date(2024, Calendar.APRIL, 1),
-                        new Date(2024, Calendar.APRIL, 5)), // TODO: DEPRECATED
+                        carService.getCar("ABC1234")), // TODO: DEPRECATED
                 new Booking(UUID.fromString("8eb90c88-aff9-484e-815d-fa1fdee4d32e"),
                         userService.getUser("d33fe925-515c-4c43-a966-cb74c3b02e3e"),
-                        carService.getCar("QWE4534"),
-                        new Date(2024, Calendar.APRIL, 6),
-                        new Date(2024, Calendar.APRIL, 10))
+                        carService.getCar("QWE4534"))
         };
     }
 

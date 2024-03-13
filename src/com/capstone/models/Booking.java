@@ -1,7 +1,6 @@
 package com.capstone.models;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.UUID;
 
 public class Booking {
@@ -9,15 +8,11 @@ public class Booking {
     private User user;
     private Car car;
     private BigDecimal bill;
-    private Date startDate;
-    private Date endDate;
 
-    public Booking(UUID bookingId, User user, Car car, Date startDate, Date endDate) {
+    public Booking(UUID bookingId, User user, Car car) {
         this.bookingId = bookingId;
         this.user = user;
         this.car = car;
-        this.startDate = startDate;
-        this.endDate = endDate;
 
         this.bill = new BigDecimal(1); // TODO
     }

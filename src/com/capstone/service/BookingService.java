@@ -3,7 +3,6 @@ package com.capstone.service;
 import com.capstone.dao.BookingDao;
 import com.capstone.models.Booking;
 
-import java.util.Date;
 import java.util.UUID;
 
 public class BookingService {
@@ -21,13 +20,13 @@ public class BookingService {
         return bookingDao.getBooking(UUID.fromString(bookingId));
     }
 
-    public Booking createBooking(String userId, String carRegNumber, Date startDate, Date endDate) {
+    public Booking createBooking(String userId, String carRegNumber) {
         // TODO
         // needs validation with dates
         return null;
     }
 
-    public Booking updateBooking(String userId, String carRegNumber, Date startDate, Date endDate) {
+    public Booking updateBooking(String userId, String carRegNumber) {
         // TODO
         return null;
     }
