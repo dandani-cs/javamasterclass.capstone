@@ -21,7 +21,7 @@ public class UserService {
     }
 
     public User editUserInfo(String name) {
-        // TODO
+        // TODO: not very applicable on arrays
         return null;
     }
 }

@@ -5,6 +5,8 @@ import com.capstone.models.Booking;
 import com.capstone.service.CarService;
 import com.capstone.service.UserService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class BookingArrayDataAccess implements BookingDao {
@@ -31,5 +33,17 @@ public class BookingArrayDataAccess implements BookingDao {
     @Override
     public Booking getBooking(UUID bookingId) {
         return null;
+    }
+
+    @Override
+    public List<Booking> getBookingsOfUser(UUID userId) {
+        List<Booking> userBookings = new ArrayList<>();
+        for (Booking booking :
+                bookings) {
+            if (userId.equals(booking.getUser().getId())) {
+                userBookings.add(booking);
+            }
+        }
+        return userBookings;
     }
 }
