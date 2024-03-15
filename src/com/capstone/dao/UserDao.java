@@ -1,6 +1,6 @@
 package com.capstone.dao;
 
-import com.capstone.models.User;
+import com.capstone.model.User;
 
 import java.util.UUID;
 

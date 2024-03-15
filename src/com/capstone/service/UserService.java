@@ -1,7 +1,8 @@
 package com.capstone.service;
 
 import com.capstone.dao.UserDao;
-import com.capstone.models.User;
+import com.capstone.helper.UserHelper;
+import com.capstone.model.User;
 
 import java.util.UUID;
 
@@ -12,8 +13,16 @@ public class UserService {
         this.userDao = userDao;
     }
 
-    public User getUser(String uuid) {
-        return userDao.getUser(UUID.fromString(uuid));
+    public User getUser(String userid) {
+        UUID uuid = UserHelper.extractUserID(userid);
+        if (uuid == null) {
+            return null;
+        }
+        return getUser(uuid);
+    }
+
+    public User getUser(UUID uuid) {
+        return userDao.getUser(uuid);
     }
 
     public User createUser(String name) {
@@ -21,7 +30,7 @@ public class UserService {
     }
 
     public User editUserInfo(String name) {
-        // TODO
+        // TODO: not very applicable on arrays
         return null;
     }
 }

@@ -1,4 +1,4 @@
-package com.capstone.models;
+package com.capstone.model;
 
 import java.math.BigDecimal;
 import java.util.UUID;

@@ -1,7 +1,7 @@
 package com.capstone.service;
 
 import com.capstone.dao.CarDao;
-import com.capstone.models.Car;
+import com.capstone.model.Car;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

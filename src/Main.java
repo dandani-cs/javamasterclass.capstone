@@ -1,12 +1,25 @@
+import com.capstone.dao.BookingDao;
+import com.capstone.dao.UserDao;
+import com.capstone.dao.arraydataaccess.BookingArrayDataAccess;
+import com.capstone.dao.arraydataaccess.UserArrayDataAccess;
 import com.capstone.screens.BookCarScreen;
+import com.capstone.screens.BookingByUserScreen;
 import com.capstone.screens.IScreen;
+import com.capstone.service.BookingService;
+import com.capstone.service.UserService;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
+    private static final BookingDao bookingDao = new BookingArrayDataAccess();
+    private static final BookingService bookingService = new BookingService(bookingDao);
+    private static final UserDao userDao = new UserArrayDataAccess();
+    private static final UserService userService = new UserService(userDao);
+    private static final Scanner scanner = new Scanner(System.in);
     static IScreen[] screens = {
-            new BookCarScreen()
+            new BookCarScreen(),
+            new BookingByUserScreen(bookingService, userService)
     };
 
     public static void main(String[] args) {
@@ -14,9 +27,9 @@ public class Main {
 
         while (choice != 7) {
             displayMenu();
-            choice = getChoice();
-            IScreen screen = screens[choice];
-            screen.display();
+            choice = getChoice(scanner);
+            IScreen screen = screens[choice - 1];
+            screen.display(scanner);
         }
     }
 
@@ -32,10 +45,9 @@ public class Main {
                 """);
     }
 
-    public static Integer getChoice() {
+    public static Integer getChoice(Scanner scanner) {
         int choice;
         System.out.print("Enter choice: ");
-        Scanner scanner = new Scanner(System.in);
         try {
              choice = scanner.nextInt();
         } catch (InputMismatchException e) {
