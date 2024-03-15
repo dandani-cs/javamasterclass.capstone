@@ -1,7 +1,7 @@
 package com.capstone.dao.arraydataaccess;
 
 import com.capstone.dao.BookingDao;
-import com.capstone.models.Booking;
+import com.capstone.model.Booking;
 import com.capstone.service.CarService;
 import com.capstone.service.UserService;
 

@@ -1,7 +1,7 @@
 package com.capstone.screens;
 
-import com.capstone.models.Booking;
-import com.capstone.models.User;
+import com.capstone.model.Booking;
+import com.capstone.model.User;
 import com.capstone.service.BookingService;
 import com.capstone.service.UserService;
 

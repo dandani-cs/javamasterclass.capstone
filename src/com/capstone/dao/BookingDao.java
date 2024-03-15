@@ -1,6 +1,6 @@
 package com.capstone.dao;
 
-import com.capstone.models.Booking;
+import com.capstone.model.Booking;
 
 import java.util.List;
 import java.util.UUID;

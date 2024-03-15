@@ -1,7 +1,7 @@
 package com.capstone.dao.arraydataaccess;
 
 import com.capstone.dao.UserDao;
-import com.capstone.models.User;
+import com.capstone.model.User;
 
 import java.util.UUID;
 

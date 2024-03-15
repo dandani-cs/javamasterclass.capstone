@@ -1,6 +1,6 @@
 package com.capstone.dao;
 
-import com.capstone.models.Car;
+import com.capstone.model.Car;
 
 public interface CarDao {
     Car[] getCars();

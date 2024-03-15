@@ -1,4 +1,4 @@
-package com.capstone.models;
+package com.capstone.model;
 
 import java.util.Objects;
 import java.util.UUID;

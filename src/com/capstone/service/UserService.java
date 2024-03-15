@@ -1,7 +1,7 @@
 package com.capstone.service;
 
 import com.capstone.dao.UserDao;
-import com.capstone.models.User;
+import com.capstone.model.User;
 
 import java.util.UUID;
 
