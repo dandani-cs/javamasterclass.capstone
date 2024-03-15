@@ -20,8 +20,7 @@ public class BookingByUserScreen implements IScreen {
     }
 
     @Override
-    public void display() {
-        Scanner scanner = new Scanner(System.in);
+    public void display(Scanner scanner) {
         System.out.print("Enter user id: ");
         String userId = scanner.next();
         UUID uuid = UserHelper.extractUserID(userId);

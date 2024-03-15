@@ -1,5 +1,7 @@
 package com.capstone.screens;
 
+import java.util.Scanner;
+
 public interface IScreen {
-    void display();
+    void display(Scanner scanner);
 }
