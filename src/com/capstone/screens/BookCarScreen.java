@@ -8,7 +8,12 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class BookCarScreen implements IScreen {
-    private final BookingService bookingService = new BookingService(new BookingArrayDataAccess());
+
+    private final BookingService bookingService;
+
+    public BookCarScreen(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
 
     @Override
     public void display(Scanner scanner) {

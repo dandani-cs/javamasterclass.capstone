@@ -6,14 +6,12 @@ import com.capstone.model.Car;
 import java.math.BigDecimal;
 
 public class CarArrayDataAccess implements CarDao {
-    private static final Car[] cars;
+    private static final Car[] cars = new Car[100];
 
-    static {
-        cars = new Car[]{
-                new Car("ABC1234", new BigDecimal(89.00), "Tesla", true),
-                new Car("ZYX0987", new BigDecimal(56.50), "Mercedes Benz", false),
-                new Car("QWE4534", new BigDecimal(46.10), "Toyota", false)
-        };
+    public CarArrayDataAccess() {
+        cars[0] = new Car("ABC1234", new BigDecimal(89.00), "Tesla", true);
+        cars[1] = new Car("ZYX0987", new BigDecimal(56.50), "Mercedes Benz", false);
+        cars[2] = new Car("QWE4534", new BigDecimal(46.10), "Toyota", false);
     }
 
     @Override

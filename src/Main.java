@@ -18,7 +18,7 @@ public class Main {
     private static final UserService userService = new UserService(userDao);
     private static final Scanner scanner = new Scanner(System.in);
     static IScreen[] screens = {
-            new BookCarScreen(),
+            new BookCarScreen(bookingService),
             new BookingByUserScreen(bookingService, userService)
     };
 
