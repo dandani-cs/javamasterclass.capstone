@@ -26,7 +26,7 @@ public class UserService {
     }
 
     public User createUser(String name) {
-        return userDao.addUser(UUID.randomUUID(), name);
+        return userDao.createUser(new User(UUID.randomUUID(), name));
     }
 
     public User editUserInfo(String name) {

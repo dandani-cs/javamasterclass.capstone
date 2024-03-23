@@ -6,5 +6,5 @@ public interface CarDao {
     Car[] getCars();
     Car getCar(String regNumber);
 
-    Car addCar(Car car);
+    Car createCar(Car car);
 }

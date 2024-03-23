@@ -1,6 +1,5 @@
 package com.capstone.screens;
 
-import com.capstone.dao.arraydataaccess.BookingArrayDataAccess;
 import com.capstone.helper.UserHelper;
 import com.capstone.service.BookingService;
 
@@ -32,5 +31,7 @@ public class BookCarScreen implements IScreen {
         } catch (Exception e) {
             throw new RuntimeException("Unable to create booking, ", e);
         }
+
+        System.out.println("Car booked successfully.");
     }
 }

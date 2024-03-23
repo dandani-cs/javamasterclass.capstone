@@ -9,5 +9,5 @@ public interface UserDao {
 
     User getUser(UUID uuid);
 
-    User addUser(UUID uuid, String name);
+    User createUser(User newUser);
 }
