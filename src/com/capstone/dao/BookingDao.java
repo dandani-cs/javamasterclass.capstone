@@ -9,4 +9,5 @@ public interface BookingDao {
     Booking[] getBookings();
     Booking getBooking(UUID bookingId);
     List<Booking> getBookingsOfUser(UUID userId);
+    Booking createBooking(Booking booking);
 }

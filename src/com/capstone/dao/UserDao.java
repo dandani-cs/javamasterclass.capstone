@@ -6,8 +6,6 @@ import java.util.UUID;
 
 public interface UserDao {
     User[] getUsers();
-
     User getUser(UUID uuid);
-
-    User addUser(UUID uuid, String name);
+    User createUser(User newUser);
 }

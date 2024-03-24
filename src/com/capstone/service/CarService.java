@@ -34,7 +34,7 @@ public class CarService {
     }
 
     public Car createCar(String regNumber, BigDecimal rentalRate, String brand, boolean isElectric) {
-        return carDao.addCar(new Car(regNumber, rentalRate, brand, isElectric));
+        return carDao.createCar(new Car(regNumber, rentalRate, brand, isElectric));
     }
 
     public Car updateCarInformation() {

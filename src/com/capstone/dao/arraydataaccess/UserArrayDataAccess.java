@@ -6,15 +6,23 @@ import com.capstone.model.User;
 import java.util.UUID;
 
 public class UserArrayDataAccess implements UserDao {
-    private static final User[] users;
+    private static final User[] users = new User[100];
+    private static int size = 2;
 
-    static {
-        users = new User[]{
-                new User(UUID.fromString("a6a0b0dd-08cb-41b8-9108-682180bab0b9"), "Anita"),
-                new User(UUID.fromString("d33fe925-515c-4c43-a966-cb74c3b02e3e"), "Benjamin"),
-        };
+    public UserArrayDataAccess() {
+        if (users[0] == null) {
+            users[0] = new User(UUID.fromString("a6a0b0dd-08cb-41b8-9108-682180bab0b9"), "Anita");
+            users[1] = new User(UUID.fromString("d33fe925-515c-4c43-a966-cb74c3b02e3e"), "Benjamin");
+        }
     }
 
+    private static int getSize() {
+        return size;
+    }
+
+    private static void setSize(int size) {
+        UserArrayDataAccess.size = size;
+    }
 
     @Override
     public User[] getUsers() {
@@ -31,8 +39,11 @@ public class UserArrayDataAccess implements UserDao {
     }
 
     @Override
-    public User addUser(UUID uuid, String name) {
-        // TODO
-        return null;
+    public User createUser(User newUser) {
+        // TODO: unit test to return the correct user
+        int initSize = getSize();
+        users[initSize] = newUser;
+        setSize(initSize + 1);
+        return users[initSize];
     }
 }

@@ -1,6 +1,5 @@
 package com.capstone.screens;
 
-import com.capstone.dao.arraydataaccess.BookingArrayDataAccess;
 import com.capstone.helper.UserHelper;
 import com.capstone.service.BookingService;
 
@@ -8,7 +7,12 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class BookCarScreen implements IScreen {
-    private final BookingService bookingService = new BookingService(new BookingArrayDataAccess());
+
+    private final BookingService bookingService;
+
+    public BookCarScreen(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
 
     @Override
     public void display(Scanner scanner) {
@@ -27,5 +31,7 @@ public class BookCarScreen implements IScreen {
         } catch (Exception e) {
             throw new RuntimeException("Unable to create booking, ", e);
         }
+
+        System.out.println("Car booked successfully.");
     }
 }
