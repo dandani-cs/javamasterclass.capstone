@@ -6,6 +6,7 @@ import com.capstone.dao.arraydataaccess.CarArrayDataAccess;
 import com.capstone.dao.arraydataaccess.UserArrayDataAccess;
 import com.capstone.screens.BookCarScreen;
 import com.capstone.screens.BookingByUserScreen;
+import com.capstone.screens.BookingsScreen;
 import com.capstone.screens.IScreen;
 import com.capstone.service.BookingService;
 import com.capstone.service.CarService;
@@ -24,20 +25,23 @@ public class Main {
     private static final Scanner scanner = new Scanner(System.in);
     static IScreen[] screens = {
             new BookCarScreen(bookingService),
-            new BookingByUserScreen(bookingService, userService)
+            new BookingByUserScreen(bookingService, userService),
+            new BookingsScreen(bookingService)
     };
 
     public static void main(String[] args) {
-        Integer choice = 0;
+        Integer choice;
 
-        while (choice != 7) {
+        while (true) {
             displayMenu();
             choice = getChoice(scanner);
+            if (choice == 7) {
+                System.out.println("Exiting application...");
+                return;
+            }
             IScreen screen = screens[choice - 1];
             screen.display(scanner);
         }
-
-        System.out.println("Exiting application...");
     }
 
     public static void displayMenu() {

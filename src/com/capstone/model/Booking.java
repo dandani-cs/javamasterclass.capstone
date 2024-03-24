@@ -1,6 +1,7 @@
 package com.capstone.model;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Booking {
@@ -39,5 +40,37 @@ public class Booking {
 
     public void setCar(Car car) {
         this.car = car;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Booking booking = (Booking) o;
+
+        if (!Objects.equals(bookingId, booking.bookingId)) return false;
+        if (!Objects.equals(user, booking.user)) return false;
+        if (!Objects.equals(car, booking.car)) return false;
+        return Objects.equals(bill, booking.bill);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = bookingId != null ? bookingId.hashCode() : 0;
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (car != null ? car.hashCode() : 0);
+        result = 31 * result + (bill != null ? bill.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "bookingId=" + bookingId +
+                ", user=" + user +
+                ", car=" + car +
+                ", bill=" + bill +
+                '}';
     }
 }

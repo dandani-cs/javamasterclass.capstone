@@ -10,10 +10,10 @@ public class CarArrayDataAccess implements CarDao {
     private static int size = 3;
 
     public CarArrayDataAccess() {
-        if (cars[0] != null) {
-            cars[0] = new Car("ABC1234", new BigDecimal(89.00), "Tesla", true);
-            cars[1] = new Car("ZYX0987", new BigDecimal(56.50), "Mercedes Benz", false);
-            cars[2] = new Car("QWE4534", new BigDecimal(46.10), "Toyota", false);
+        if (cars[0] == null) {
+            cars[0] = new Car("ABC1234", new BigDecimal("89.00"), "Tesla", true);
+            cars[1] = new Car("ZYX0987", new BigDecimal("56.50"), "Mercedes Benz", false);
+            cars[2] = new Car("QWE4534", new BigDecimal("46.10"), "Toyota", false);
         }
     }
 

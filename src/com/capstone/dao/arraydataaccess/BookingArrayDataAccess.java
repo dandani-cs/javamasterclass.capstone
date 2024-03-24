@@ -21,7 +21,7 @@ public class BookingArrayDataAccess implements BookingDao {
     public BookingArrayDataAccess(UserService userService, CarService carService) {
         this.userService = userService;
         this.carService = carService;
-        if (bookings[0] != null) { // check if there is already info there
+        if (bookings[0] == null) { // check if there is already info there
             bookings[0] = new Booking(UUID.fromString("be00d8b6-f93a-4ad3-a976-38ecd75e6fc7"),
                     userService.getUser("a6a0b0dd-08cb-41b8-9108-682180bab0b9"),
                     carService.getCar("ABC1234"));
