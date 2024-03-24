@@ -10,8 +10,10 @@ public class UserArrayDataAccess implements UserDao {
     private static int size = 2;
 
     public UserArrayDataAccess() {
-        users[0] = new User(UUID.fromString("a6a0b0dd-08cb-41b8-9108-682180bab0b9"), "Anita");
-        users[1] = new User(UUID.fromString("d33fe925-515c-4c43-a966-cb74c3b02e3e"), "Benjamin");
+        if (users[0] != null) {
+            users[0] = new User(UUID.fromString("a6a0b0dd-08cb-41b8-9108-682180bab0b9"), "Anita");
+            users[1] = new User(UUID.fromString("d33fe925-515c-4c43-a966-cb74c3b02e3e"), "Benjamin");
+        }
     }
 
     private static int getSize() {

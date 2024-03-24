@@ -5,6 +5,5 @@ import com.capstone.model.Car;
 public interface CarDao {
     Car[] getCars();
     Car getCar(String regNumber);
-
     Car createCar(Car car);
 }
