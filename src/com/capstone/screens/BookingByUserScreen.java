@@ -11,8 +11,8 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class BookingByUserScreen implements IScreen {
-    private BookingService bookingService;
-    private UserService userService;
+    private final BookingService bookingService;
+    private final UserService userService;
 
     public BookingByUserScreen(BookingService bookingService, UserService userService) {
         this.bookingService = bookingService;
