@@ -6,7 +6,7 @@ import com.capstone.service.BookingService;
 import java.util.Scanner;
 
 public class BookingsScreen implements IScreen {
-    private BookingService bookingService;
+    private final BookingService bookingService;
 
     public BookingsScreen(BookingService bookingService) {
         this.bookingService = bookingService;

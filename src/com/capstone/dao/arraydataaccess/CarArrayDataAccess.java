@@ -4,6 +4,7 @@ import com.capstone.dao.CarDao;
 import com.capstone.model.Car;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 public class CarArrayDataAccess implements CarDao {
     private static final Car[] cars = new Car[100];
@@ -27,7 +28,7 @@ public class CarArrayDataAccess implements CarDao {
 
     @Override
     public Car[] getCars() {
-        return cars;
+        return Arrays.copyOfRange(cars, 0, size);
     }
 
     public Car getCar(String regNumber) {

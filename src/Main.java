@@ -4,10 +4,7 @@ import com.capstone.dao.UserDao;
 import com.capstone.dao.arraydataaccess.BookingArrayDataAccess;
 import com.capstone.dao.arraydataaccess.CarArrayDataAccess;
 import com.capstone.dao.arraydataaccess.UserArrayDataAccess;
-import com.capstone.screens.BookCarScreen;
-import com.capstone.screens.BookingByUserScreen;
-import com.capstone.screens.BookingsScreen;
-import com.capstone.screens.IScreen;
+import com.capstone.screens.*;
 import com.capstone.service.BookingService;
 import com.capstone.service.CarService;
 import com.capstone.service.UserService;
@@ -26,7 +23,10 @@ public class Main {
     static IScreen[] screens = {
             new BookCarScreen(bookingService),
             new BookingByUserScreen(bookingService, userService),
-            new BookingsScreen(bookingService)
+            new BookingsScreen(bookingService),
+            new CarsScreen(carService),
+            new ElectricCarsScreen(carService),
+            new UsersScreen(userService)
     };
 
     public static void main(String[] args) {

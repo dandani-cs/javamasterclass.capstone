@@ -3,6 +3,7 @@ package com.capstone.dao.arraydataaccess;
 import com.capstone.dao.UserDao;
 import com.capstone.model.User;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 public class UserArrayDataAccess implements UserDao {
@@ -26,7 +27,7 @@ public class UserArrayDataAccess implements UserDao {
 
     @Override
     public User[] getUsers() {
-        return users;
+        return Arrays.copyOfRange(users, 0, size);
     }
 
     public User getUser(UUID uuid) {
