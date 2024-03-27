@@ -35,6 +35,9 @@ public class Main {
         while (true) {
             displayMenu();
             choice = getChoice(scanner);
+            if (choice == 0) {
+                continue;
+            }
             if (choice == 7) {
                 System.out.println("Exiting application...");
                 return;
@@ -60,12 +63,12 @@ public class Main {
         int choice;
         System.out.print("Enter choice: ");
         try {
-             choice = scanner.nextInt();
+            choice = scanner.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("Invalid choice, please try again.");
             return 0;
         }
-        if (choice < 1 && choice > 7) {
+        if (choice < 1 || choice > 7) {
             System.out.println("Invalid choice, please try again.");
             return 0;
         }
