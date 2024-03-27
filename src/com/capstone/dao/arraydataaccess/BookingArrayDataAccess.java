@@ -6,6 +6,7 @@ import com.capstone.service.CarService;
 import com.capstone.service.UserService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -41,7 +42,7 @@ public class BookingArrayDataAccess implements BookingDao {
 
     @Override
     public Booking[] getBookings() {
-        return bookings;
+        return Arrays.copyOfRange(bookings, 0, size);
     }
 
     @Override
