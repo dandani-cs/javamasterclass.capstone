@@ -1,12 +1,11 @@
 package com.capstone.dao.arraydataaccess;
 
-import com.capstone.dao.UserDao;
 import com.capstone.model.User;
 
 import java.util.Arrays;
 import java.util.UUID;
 
-public class UserArrayDataAccess implements UserDao {
+public class UserArrayDataAccess {
     private static final User[] users = new User[100];
     private static int size = 2;
 
@@ -25,7 +24,6 @@ public class UserArrayDataAccess implements UserDao {
         UserArrayDataAccess.size = size;
     }
 
-    @Override
     public User[] getUsers() {
         return Arrays.copyOfRange(users, 0, size);
     }
@@ -39,7 +37,6 @@ public class UserArrayDataAccess implements UserDao {
         return null;
     }
 
-    @Override
     public User createUser(User newUser) {
         // TODO: unit test to return the correct user
         int initSize = getSize();
