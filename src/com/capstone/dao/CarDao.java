@@ -2,8 +2,10 @@ package com.capstone.dao;
 
 import com.capstone.model.Car;
 
+import java.util.ArrayList;
+
 public interface CarDao {
-    Car[] getCars();
+    ArrayList<Car> getCars();
     Car getCar(String regNumber);
     Car createCar(Car car);
 }

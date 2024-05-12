@@ -12,7 +12,7 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class UserCSVDataAccess implements UserDao {
-    private static final String CSV_FILE = "src/resources/UserCSV.csv";
+    private static final String CSV_FILE = "src/resources/users.csv";
 
     @Override
     public ArrayList<User> getUsers() {

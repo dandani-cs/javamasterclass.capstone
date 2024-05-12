@@ -2,7 +2,7 @@ import com.capstone.dao.BookingDao;
 import com.capstone.dao.CarDao;
 import com.capstone.dao.UserDao;
 import com.capstone.dao.arraydataaccess.BookingArrayDataAccess;
-import com.capstone.dao.arraydataaccess.CarArrayDataAccess;
+import com.capstone.dao.csvdataaccess.CarCSVDataAccess;
 import com.capstone.dao.csvdataaccess.UserCSVDataAccess;
 import com.capstone.screens.*;
 import com.capstone.service.BookingService;
@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Main {
     private static final UserDao userDao = new UserCSVDataAccess();
     private static final UserService userService = new UserService(userDao);
-    private static final CarDao carDao = new CarArrayDataAccess();
+    private static final CarDao carDao = new CarCSVDataAccess();
     private static final CarService carService = new CarService(carDao);
     private static final BookingDao bookingDao = new BookingArrayDataAccess(userService, carService);
     private static final BookingService bookingService = new BookingService(bookingDao, userService, carService);
