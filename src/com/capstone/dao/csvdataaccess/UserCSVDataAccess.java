@@ -1,14 +1,10 @@
 package com.capstone.dao.csvdataaccess;
 
 import com.capstone.dao.UserDao;
+import com.capstone.helper.CSVHelper;
 import com.capstone.model.User;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.UUID;
 
 public class UserCSVDataAccess implements UserDao {
@@ -16,41 +12,22 @@ public class UserCSVDataAccess implements UserDao {
 
     @Override
     public ArrayList<User> getUsers() {
-        ArrayList<User> users = new ArrayList<>();
-        try (Scanner csvScanner = new Scanner(new File(CSV_FILE))) {
-            while (csvScanner.hasNextLine()) {
-                users.add(extractUser(csvScanner.nextLine()));
-            }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        return users;
+        return new ArrayList<>(CSVHelper.getData(CSV_FILE).stream().map(this::extractUser).toList());
     }
 
     @Override
     public User getUser(UUID uuid) {
-        String id = uuid.toString();
-        try (Scanner csvScanner = new Scanner(new File(CSV_FILE))) {
-            while (csvScanner.hasNextLine()) {
-                String[] data = csvScanner.nextLine().split(",");
-                if (id.equals(data[0])) {
-                    return new User(uuid, data[1]);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("File " + CSV_FILE + " was not found", e);
-        }
-        return null;
+        return CSVHelper.getData(CSV_FILE).stream()
+                .map(line -> line.split(","))
+                .filter(strData -> uuid.toString().equals(strData[0]))
+                .findFirst()
+                .map(strings -> new User(uuid, strings[1]))
+                .orElse(null);
     }
 
     @Override
     public User createUser(User newUser) {
-        String data = newUser.getId() + "," + newUser.getName() + "\n";
-        try (FileWriter fileWriter = new FileWriter(CSV_FILE, true)) {
-            fileWriter.append(data);
-        } catch (IOException e) {
-            throw new IllegalStateException("File cannot be opened");
-        }
+        CSVHelper.writeData(CSV_FILE, newUser.getId() + "," + newUser.getName() + "\n");
         return newUser;
     }
 
