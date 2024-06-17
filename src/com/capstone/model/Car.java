@@ -79,4 +79,11 @@ public class Car {
                 ", isElectric=" + isElectric +
                 '}';
     }
+
+    public String toCSVdata() {
+        return regNumber + "," +
+                rentalRate.toString() + "," +
+                brand + "," +
+                (isElectric ? "true" : "false") + "\n";
+    }
 }

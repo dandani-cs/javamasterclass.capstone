@@ -1,9 +1,9 @@
 import com.capstone.dao.BookingDao;
 import com.capstone.dao.CarDao;
 import com.capstone.dao.UserDao;
-import com.capstone.dao.arraydataaccess.BookingArrayDataAccess;
-import com.capstone.dao.arraydataaccess.CarArrayDataAccess;
-import com.capstone.dao.arraydataaccess.UserArrayDataAccess;
+import com.capstone.dao.csvdataaccess.BookingCSVDataAccess;
+import com.capstone.dao.csvdataaccess.CarCSVDataAccess;
+import com.capstone.dao.csvdataaccess.UserCSVDataAccess;
 import com.capstone.screens.*;
 import com.capstone.service.BookingService;
 import com.capstone.service.CarService;
@@ -13,11 +13,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    private static final UserDao userDao = new UserArrayDataAccess();
+    private static final UserDao userDao = new UserCSVDataAccess();
     private static final UserService userService = new UserService(userDao);
-    private static final CarDao carDao = new CarArrayDataAccess();
+    private static final CarDao carDao = new CarCSVDataAccess();
     private static final CarService carService = new CarService(carDao);
-    private static final BookingDao bookingDao = new BookingArrayDataAccess(userService, carService);
+    private static final BookingDao bookingDao = new BookingCSVDataAccess();
     private static final BookingService bookingService = new BookingService(bookingDao, userService, carService);
     private static final Scanner scanner = new Scanner(System.in);
     static IScreen[] screens = {
@@ -75,3 +75,8 @@ public class Main {
         return choice;
     }
 }
+
+// GENERAL TODO
+// extract file read and write
+// check for other methods that can be streamlined
+// remove lots of booking to booking entity and vice versa conversion

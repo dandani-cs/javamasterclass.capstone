@@ -3,6 +3,7 @@ package com.capstone.screens;
 import com.capstone.model.Booking;
 import com.capstone.service.BookingService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class BookingsScreen implements IScreen {
@@ -14,7 +15,7 @@ public class BookingsScreen implements IScreen {
 
     @Override
     public void display(Scanner scanner) {
-        Booking[] bookings = bookingService.getBookings();
+        List<Booking> bookings = bookingService.getBookings();
         for (var booking : bookings) {
             if (booking == null) {
                 return;

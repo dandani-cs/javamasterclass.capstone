@@ -4,6 +4,7 @@ import com.capstone.dao.UserDao;
 import com.capstone.helper.UserHelper;
 import com.capstone.model.User;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class UserService {
@@ -25,7 +26,7 @@ public class UserService {
         return userDao.getUser(uuid);
     }
 
-    public User[] getUsers() {
+    public ArrayList<User> getUsers() {
         return userDao.getUsers();
     }
 

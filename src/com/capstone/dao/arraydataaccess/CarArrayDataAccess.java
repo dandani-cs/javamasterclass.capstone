@@ -1,12 +1,11 @@
 package com.capstone.dao.arraydataaccess;
 
-import com.capstone.dao.CarDao;
 import com.capstone.model.Car;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 
-public class CarArrayDataAccess implements CarDao {
+public class CarArrayDataAccess {
     private static final Car[] cars = new Car[100];
     private static int size = 3;
 
@@ -26,7 +25,6 @@ public class CarArrayDataAccess implements CarDao {
         CarArrayDataAccess.size = size;
     }
 
-    @Override
     public Car[] getCars() {
         return Arrays.copyOfRange(cars, 0, size);
     }
@@ -40,7 +38,6 @@ public class CarArrayDataAccess implements CarDao {
         return null;
     }
 
-    @Override
     public Car createCar(Car newCar) {
         // TODO: unit test to return the correct car
         int initSize = getSize();
