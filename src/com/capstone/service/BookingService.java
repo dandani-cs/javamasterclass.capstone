@@ -1,12 +1,14 @@
 package com.capstone.service;
 
 import com.capstone.dao.BookingDao;
+import com.capstone.entities.BookingEntity;
 import com.capstone.model.Booking;
 import com.capstone.model.Car;
 import com.capstone.model.User;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class BookingService {
     private final BookingDao bookingDao;
@@ -21,16 +23,20 @@ public class BookingService {
         this.carService = carService;
     }
 
-    public Booking[] getBookings() {
-        return bookingDao.getBookings();
+    public List<Booking> getBookings() { // TODO: display something if no booking is saved
+        return bookingDao.getBookings().stream()
+                .map(this::fromBookingEntity)
+                .collect(Collectors.toList());
     }
 
     public Booking getBooking(String bookingId) {
-        return bookingDao.getBooking(UUID.fromString(bookingId));
+        return fromBookingEntity(bookingDao.getBooking(UUID.fromString(bookingId)));
     }
 
     public List<Booking> getBookingsOfUser(UUID userid) {
-        return bookingDao.getBookingsOfUser(userid);
+        return bookingDao.getBookingsOfUser(userid).stream()
+                .map(this::fromBookingEntity)
+                .collect(Collectors.toList());
     }
 
     public Booking createBooking(String userId, String carRegNumber) {
@@ -39,7 +45,15 @@ public class BookingService {
         if (user == null || car == null) {
             throw new IllegalArgumentException("Invalid booking details");
         }
-        return bookingDao.createBooking(new Booking(UUID.randomUUID(), user, car));
+        return bookingDao.createBooking(new Booking(UUID.randomUUID(), user, car)); // TODO: maybe just pass userid and carReg?
+    }
+
+    private Booking fromBookingEntity(BookingEntity entity) {
+        return new Booking(
+                UUID.fromString(entity.bookingId),
+                userService.getUser(entity.userid),
+                carService.getCar(entity.carRegNumber)
+        );
     }
 
     public Booking updateBooking(String userId, String carRegNumber) {

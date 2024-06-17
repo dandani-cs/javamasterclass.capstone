@@ -1,6 +1,5 @@
 package com.capstone.dao.arraydataaccess;
 
-import com.capstone.dao.CarDao;
 import com.capstone.model.Car;
 
 import java.math.BigDecimal;

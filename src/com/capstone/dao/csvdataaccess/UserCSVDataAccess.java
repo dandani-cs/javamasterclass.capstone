@@ -30,13 +30,15 @@ public class UserCSVDataAccess implements UserDao {
     @Override
     public User getUser(UUID uuid) {
         String id = uuid.toString();
-        try (Scanner csvScanner = new Scanner(CSV_FILE)) {
+        try (Scanner csvScanner = new Scanner(new File(CSV_FILE))) {
             while (csvScanner.hasNextLine()) {
                 String[] data = csvScanner.nextLine().split(",");
                 if (id.equals(data[0])) {
                     return new User(uuid, data[1]);
                 }
             }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("File " + CSV_FILE + " was not found", e);
         }
         return null;
     }

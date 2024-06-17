@@ -1,6 +1,5 @@
 package com.capstone.dao.arraydataaccess;
 
-import com.capstone.dao.BookingDao;
 import com.capstone.model.Booking;
 import com.capstone.service.CarService;
 import com.capstone.service.UserService;
@@ -10,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-public class BookingArrayDataAccess implements BookingDao {
+public class BookingArrayDataAccess {
     private static final Booking[] bookings = new Booking[100];
 
     // should be referenced back to service, needed for array init
@@ -40,17 +39,14 @@ public class BookingArrayDataAccess implements BookingDao {
         BookingArrayDataAccess.size = size;
     }
 
-    @Override
     public Booking[] getBookings() {
         return Arrays.copyOfRange(bookings, 0, size);
     }
 
-    @Override
     public Booking getBooking(UUID bookingId) {
         return null;
     }
 
-    @Override
     public List<Booking> getBookingsOfUser(UUID userId) {
         List<Booking> userBookings = new ArrayList<>();
         for (Booking booking :
@@ -62,7 +58,6 @@ public class BookingArrayDataAccess implements BookingDao {
         return userBookings;
     }
 
-    @Override
     public Booking createBooking(Booking booking) {
         int initSize = getSize();
         bookings[initSize] = booking;

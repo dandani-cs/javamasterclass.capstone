@@ -5,6 +5,8 @@ import com.capstone.model.Car;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -26,7 +28,7 @@ public class CarCSVDataAccess implements CarDao {
 
     @Override
     public Car getCar(String regNumber) {
-        try (Scanner csvScanner = new Scanner(CSV_FILE)) {
+        try (Scanner csvScanner = new Scanner(new File(CSV_FILE))) {
             while (csvScanner.hasNextLine()) {
                 String line = csvScanner.nextLine();
                 String[] data = line.split(",");
@@ -34,13 +36,20 @@ public class CarCSVDataAccess implements CarDao {
                     return extractCar(line);
                 }
             }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("File " + CSV_FILE + " was not found", e);
         }
         return null;
     }
 
     @Override
-    public Car createCar(Car car) {
-        return null;
+    public Car createCar(Car newCar) {
+        try (FileWriter fileWriter = new FileWriter(CSV_FILE)) {
+            fileWriter.append(newCar.toCSVdata());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return newCar;
     }
 
     private Car extractCar(String line) {

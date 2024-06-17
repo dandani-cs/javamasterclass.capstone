@@ -15,7 +15,7 @@ public class Booking {
         this.user = user;
         this.car = car;
 
-        this.bill = new BigDecimal(1); // TODO
+        this.bill = BigDecimal.ONE; // TODO
     }
 
     public UUID getBookingId() {
