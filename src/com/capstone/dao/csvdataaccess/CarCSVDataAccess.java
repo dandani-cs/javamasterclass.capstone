@@ -20,7 +20,7 @@ public class CarCSVDataAccess implements CarDao {
     @Override
     public Car getCar(String regNumber) {
         return CSVHelper.getData(CSV_FILE).stream()
-                .filter(line -> regNumber.equals(line.split(",")[0]))
+                .filter(line -> CSVHelper.compareWithLine(regNumber, line, 0))
                 .findFirst()
                 .map(this::extractCar)
                 .orElse(null);

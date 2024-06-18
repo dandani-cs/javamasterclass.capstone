@@ -39,4 +39,9 @@ public class CSVHelper {
             throw new IllegalStateException("File " + path + "cannot be created" + e);
         }
     }
+
+    public static boolean compareWithLine(String value, String line, int index)
+    {
+        return value.equals(line.split(",")[index]);
+    }
 }

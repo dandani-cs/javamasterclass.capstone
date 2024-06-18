@@ -31,9 +31,7 @@ public class BookingCSVDataAccess implements BookingDao {
     @Override
     public BookingEntity getBooking(UUID bookingId) {
         return CSVHelper.getData(CSV_FILE).stream()
-                .filter(line -> bookingId.toString().equals(
-                        line.split(",")[0]
-                ))
+                .filter(line -> CSVHelper.compareWithLine(bookingId.toString(), line, 0))
                 .findFirst()
                 .map(this::extractBookingEntity)
                 .orElse(null);
