@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CSVHelper {
+    // TODO: check if file exists, if not create
     public static List<String> getData(String path) {
         ArrayList<String> data = new ArrayList<>();
         try (Scanner csvScanner = new Scanner(new File(path))) {

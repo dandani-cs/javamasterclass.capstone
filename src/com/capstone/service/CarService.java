@@ -16,7 +16,7 @@ public class CarService {
         this.carDao = carDao;
     }
 
-    public ArrayList<Car> getCars() {
+    public List<Car> getCars() {
         return carDao.getCars();
     }
 
