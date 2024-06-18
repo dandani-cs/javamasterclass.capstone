@@ -34,7 +34,8 @@ public class BookingService {
     }
 
     public List<Booking> getBookingsOfUser(UUID userid) {
-        return bookingDao.getBookingsOfUser(userid).stream()
+        return bookingDao.getBookings().stream()
+                .filter(entity -> userid.toString().equals(entity.userid))
                 .map(this::fromBookingEntity)
                 .collect(Collectors.toList());
     }

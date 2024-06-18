@@ -9,6 +9,5 @@ import java.util.UUID;
 public interface BookingDao {
     List<BookingEntity> getBookings();
     BookingEntity getBooking(UUID bookingId);
-    List<BookingEntity> getBookingsOfUser(UUID userId);
     Booking createBooking(Booking booking); // TODO: overload with bookingentity
 }
