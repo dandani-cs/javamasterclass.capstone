@@ -1,7 +1,7 @@
 package com.capstone.screens;
 
-import com.capstone.model.Car;
 import com.capstone.service.CarService;
+import com.capstone.model.Car;
 
 import java.util.Scanner;
 

@@ -1,7 +1,7 @@
 package com.capstone.screens;
 
-import com.capstone.model.Booking;
 import com.capstone.service.BookingService;
+import com.capstone.model.Booking;
 
 import java.util.List;
 import java.util.Scanner;

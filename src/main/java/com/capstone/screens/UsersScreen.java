@@ -1,7 +1,7 @@
 package com.capstone.screens;
 
-import com.capstone.model.User;
 import com.capstone.service.UserService;
+import com.capstone.model.User;
 
 import java.util.Scanner;
 
