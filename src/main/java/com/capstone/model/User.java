@@ -53,4 +53,8 @@ public class User {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    public String toCSVData() {
+        return getId() + "," + getName() + "\n";
+    }
 }

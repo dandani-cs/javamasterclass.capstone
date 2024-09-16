@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarCSVDataAccess implements CarDao {
-    private static final String CSV_FILE = "src/resources/cars.csv";
+    private static final String CSV_FILE = "cars.csv";
     @Override
     public List<Car> getCars() {
         return CSVHelper.getData(CSV_FILE).stream()
