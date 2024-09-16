@@ -12,4 +12,8 @@ public class UserHelper {
         }
         return result;
     }
+
+    public static void populateUserFile() {
+
+    }
 }

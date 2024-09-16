@@ -10,7 +10,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class BookingCSVDataAccess implements BookingDao {
-    private static final String CSV_FILE = "src/resources/Bookings.csv";
+    private static final String CSV_FILE = "Bookings.csv";
     @Override
     public List<BookingEntity> getBookings() {
         return CSVHelper.getData(CSV_FILE).stream()

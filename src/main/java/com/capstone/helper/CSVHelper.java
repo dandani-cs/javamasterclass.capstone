@@ -1,25 +1,36 @@
 package com.capstone.helper;
 
+import com.capstone.helper.faker.BookingFaker;
+import com.capstone.helper.faker.CarFaker;
+import com.capstone.helper.faker.DataFaker;
+import com.capstone.helper.faker.UserFaker;
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class CSVHelper {
-    public static List<String> getData(String path) {
-        ArrayList<String> data = new ArrayList<>();
-        validateFile(path);
-        try (Scanner csvScanner = new Scanner(new File(path))) {
-            while (csvScanner.hasNextLine()) {
-                data.add(csvScanner.nextLine());
-            }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("File " + path + " cannot be found", e);
+    public static String RESOURCES_DIR = System.getProperty("user.dir") + "\\capstone\\";
+
+    public static List<String> getData(String filename) {
+
+        String finalFilename = RESOURCES_DIR + filename;
+        File file = validateFile(finalFilename);
+        if (file.length() == 0)
+        {
+            generateFile(filename);
         }
-        return data;
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            return reader.lines().toList();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("File " + finalFilename + " cannot be found", e);
+        } catch (IOException e) {
+            throw new RuntimeException("File cannot be opened");
+        }
     }
 
     public static void writeData(String path, String data) {
@@ -31,13 +42,45 @@ public class CSVHelper {
         }
     }
 
-    private static void validateFile(String path) {
-        File file = new File(path);
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            throw new IllegalStateException("File " + path + "cannot be created" + e);
+    private static File validateFile(String filename) {
+        File file = getFileIfExists(filename);
+        if (file == null) {
+            file = new File(filename);
+            try {
+                if (file.createNewFile()) {
+                    file = getFileIfExists(filename);
+                } else {
+                    throw new IOException();
+                }
+            } catch (IOException e) {
+                throw new IllegalStateException("File " + filename + " does not exist and cannot be created" );
+            }
         }
+        return file;
+    }
+
+    private static File getFileIfExists(String filename) {
+        File file = new File(filename);
+        return file.exists() ? file : null;
+    }
+
+    private static void generateFile(String filename) {
+        switch (filename) {
+            case "users.csv":
+                generateFile(filename, new UserFaker());
+                break;
+            case "cars.csv":
+                generateFile(filename, new CarFaker());
+                break;
+            case "Bookings.csv":
+                generateFile(filename, new BookingFaker());
+                break;
+        }
+    }
+
+    private static void generateFile(String filename, DataFaker faker) {
+        String data = faker.getData();
+        writeData(RESOURCES_DIR + filename, data);
     }
 
     public static boolean compareWithLine(String value, String line, int index)
