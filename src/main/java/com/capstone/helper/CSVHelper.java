@@ -14,10 +14,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class CSVHelper {
-    public static String RESOURCES_DIR = System.getProperty("user.dir") + "\\capstone\\";
+    public static final String RESOURCES_DIR = System.getProperty("user.dir") + "\\capstone\\";
 
     public static List<String> getData(String filename) {
-
         String finalFilename = RESOURCES_DIR + filename;
         File file = validateFile(finalFilename);
         if (file.length() == 0)
@@ -65,16 +64,12 @@ public class CSVHelper {
     }
 
     private static void generateFile(String filename) {
-        switch (filename) {
-            case "users.csv":
-                generateFile(filename, new UserFaker());
-                break;
-            case "cars.csv":
-                generateFile(filename, new CarFaker());
-                break;
-            case "Bookings.csv":
-                generateFile(filename, new BookingFaker());
-                break;
+        if (filename.startsWith("users")) {
+            generateFile(filename, new UserFaker());
+        } else if (filename.startsWith("cars")) {
+            generateFile(filename, new CarFaker());
+        } else if (filename.startsWith("Bookings")) {
+            generateFile(filename, new BookingFaker());
         }
     }
 
