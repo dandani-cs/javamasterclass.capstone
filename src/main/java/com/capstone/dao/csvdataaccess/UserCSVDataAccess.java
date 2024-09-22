@@ -7,8 +7,10 @@ import com.capstone.model.User;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import static com.capstone.helper.CSVHelper.RESOURCES_DIR;
+
 public class UserCSVDataAccess implements UserDao {
-    private static final String CSV_FILE = "src/resources/users.csv";
+    private static final String CSV_FILE = "users.csv";
 
     @Override
     public ArrayList<User> getUsers() {

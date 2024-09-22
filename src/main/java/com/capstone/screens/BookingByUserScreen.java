@@ -1,10 +1,10 @@
 package com.capstone.screens;
 
+import com.capstone.service.BookingService;
+import com.capstone.service.UserService;
 import com.capstone.helper.UserHelper;
 import com.capstone.model.Booking;
 import com.capstone.model.User;
-import com.capstone.service.BookingService;
-import com.capstone.service.UserService;
 
 import java.util.List;
 import java.util.Scanner;
