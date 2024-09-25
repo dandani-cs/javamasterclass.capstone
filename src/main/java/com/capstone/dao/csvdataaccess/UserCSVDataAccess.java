@@ -2,6 +2,8 @@ package com.capstone.dao.csvdataaccess;
 
 import com.capstone.dao.UserDao;
 import com.capstone.helper.CSVHelper;
+import com.capstone.helper.faker.DataFaker;
+import com.capstone.helper.faker.UserFaker;
 import com.capstone.model.User;
 
 import java.util.ArrayList;
@@ -11,15 +13,16 @@ import static com.capstone.helper.CSVHelper.RESOURCES_DIR;
 
 public class UserCSVDataAccess implements UserDao {
     private static final String CSV_FILE = "users.csv";
+    public static final DataFaker USER_FAKER = new UserFaker();
 
     @Override
     public ArrayList<User> getUsers() {
-        return new ArrayList<>(CSVHelper.getData(CSV_FILE).stream().map(this::extractUser).toList());
+        return new ArrayList<>(CSVHelper.getData(CSV_FILE, USER_FAKER).stream().map(this::extractUser).toList());
     }
 
     @Override
     public User getUser(UUID uuid) {
-        return CSVHelper.getData(CSV_FILE).stream()
+        return CSVHelper.getData(CSV_FILE, USER_FAKER).stream()
                 .map(line -> line.split(","))
                 .filter(strData -> uuid.toString().equals(strData[0]))
                 .findFirst()

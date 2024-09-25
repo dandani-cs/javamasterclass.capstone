@@ -1,9 +1,6 @@
 package com.capstone.helper;
 
-import com.capstone.helper.faker.BookingFaker;
-import com.capstone.helper.faker.CarFaker;
 import com.capstone.helper.faker.DataFaker;
-import com.capstone.helper.faker.UserFaker;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,12 +13,12 @@ import java.util.List;
 public class CSVHelper {
     public static final String RESOURCES_DIR = System.getProperty("user.dir") + "\\capstone\\";
 
-    public static List<String> getData(String filename) {
+    public static List<String> getData(String filename, DataFaker faker) {
         String finalFilename = RESOURCES_DIR + filename;
         File file = validateFile(finalFilename);
         if (file.length() == 0)
         {
-            generateFile(filename);
+            generateFile(filename, faker);
         }
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             return reader.lines().toList();
@@ -61,16 +58,6 @@ public class CSVHelper {
     private static File getFileIfExists(String filename) {
         File file = new File(filename);
         return file.exists() ? file : null;
-    }
-
-    private static void generateFile(String filename) {
-        if (filename.startsWith("users")) {
-            generateFile(filename, new UserFaker());
-        } else if (filename.startsWith("cars")) {
-            generateFile(filename, new CarFaker());
-        } else if (filename.startsWith("Bookings")) {
-            generateFile(filename, new BookingFaker());
-        }
     }
 
     private static void generateFile(String filename, DataFaker faker) {

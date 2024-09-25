@@ -3,6 +3,8 @@ package com.capstone.dao.csvdataaccess;
 import com.capstone.dao.BookingDao;
 import com.capstone.entities.BookingEntity;
 import com.capstone.helper.CSVHelper;
+import com.capstone.helper.faker.BookingFaker;
+import com.capstone.helper.faker.DataFaker;
 import com.capstone.model.Booking;
 
 import java.util.List;
@@ -11,9 +13,11 @@ import java.util.stream.Collectors;
 
 public class BookingCSVDataAccess implements BookingDao {
     private static final String CSV_FILE = "Bookings.csv";
+    private static final DataFaker BOOKING_FAKER = new BookingFaker();
+
     @Override
     public List<BookingEntity> getBookings() {
-        return CSVHelper.getData(CSV_FILE).stream()
+        return CSVHelper.getData(CSV_FILE, BOOKING_FAKER).stream()
                 .map(this::extractBookingEntity)
                 .collect(Collectors.toList());
     }
@@ -30,7 +34,7 @@ public class BookingCSVDataAccess implements BookingDao {
 
     @Override
     public BookingEntity getBooking(UUID bookingId) {
-        return CSVHelper.getData(CSV_FILE).stream()
+        return CSVHelper.getData(CSV_FILE, BOOKING_FAKER).stream()
                 .filter(line -> CSVHelper.compareWithLine(bookingId.toString(), line, 0))
                 .findFirst()
                 .map(this::extractBookingEntity)

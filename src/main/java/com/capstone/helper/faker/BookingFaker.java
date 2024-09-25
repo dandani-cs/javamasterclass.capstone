@@ -1,5 +1,7 @@
 package com.capstone.helper.faker;
 
+import com.capstone.dao.csvdataaccess.CarCSVDataAccess;
+import com.capstone.dao.csvdataaccess.UserCSVDataAccess;
 import com.capstone.entities.BookingEntity;
 import com.capstone.helper.CSVHelper;
 
@@ -18,8 +20,8 @@ public class BookingFaker implements DataFaker<BookingEntity> {
     @Override
     public List<BookingEntity> generateData() {
         List<BookingEntity> newData = new ArrayList<>();
-        List<String> users = CSVHelper.getData(USER_FILENAME);
-        List<String> cars = CSVHelper.getData(CAR_FILENAME);
+        List<String> users = CSVHelper.getData(USER_FILENAME, UserCSVDataAccess.USER_FAKER);
+        List<String> cars = CSVHelper.getData(CAR_FILENAME, CarCSVDataAccess.CAR_FAKER);
 
         while (newData.size() < 20) {
             newData.add(new BookingEntity(UUID.randomUUID().toString(), getRandomData(users, users.size()), getRandomData(cars, cars.size()), "1"));
