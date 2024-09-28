@@ -4,13 +4,14 @@ import com.capstone.dao.CarDao;
 import com.capstone.model.Car;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class CarServiceTest {
     CarDao carDao = mock(CarDao.class);
@@ -61,5 +62,12 @@ public class CarServiceTest {
 
         Assertions.assertEquals(1, result.size());
         Assertions.assertEquals(expectedRegNumber1, result.get(0).getRegNumber());
+    }
+
+    @Test
+    public void shouldCallCarDaoCreateCar() throws IOException {
+        CarService carService = new CarService(carDao);
+        carService.createCar(expectedRegNumber1, BigDecimal.ONE, "Brand", false);
+        verify(carDao, times(1)).createCar(ArgumentMatchers.any(Car.class));
     }
 }

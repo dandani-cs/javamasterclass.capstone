@@ -4,13 +4,13 @@ import com.capstone.dao.UserDao;
 import com.capstone.model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class UserServiceTest {
     UserDao userDao = mock(UserDao.class);
@@ -57,4 +57,11 @@ public class UserServiceTest {
         Assertions.assertEquals("bar foo", result.get(1).getName());
     }
 
+    @Test
+    public void shouldCallUserDaoCreateUser() {
+        UserService userService = new UserService(userDao);
+        userService.createUser("foo");
+
+        verify(userDao, times(1)).createUser(ArgumentMatchers.any(User.class));
+    }
 }
